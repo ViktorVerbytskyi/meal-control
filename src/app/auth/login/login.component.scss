@@ -1,0 +1,11 @@
+.login-form {
+  margin-top: 20px;
+
+  &_submit-btn {
+    width: 100%;
+  }
+}
+.login-field,
+.password-field {
+  width: 300px;
+}

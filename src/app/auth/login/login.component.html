@@ -1,1 +1,40 @@
-<p>login works!</p>
+<form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field class="login-field" appearance="outline">
+    <mat-label>Login</mat-label>
+    <input
+      matInput
+      type="text"
+      name="email"
+      formControlName="email"
+    >
+    <mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="email.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="password-field" appearance="outline">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      type="password"
+      name="password"
+      formControlName="password"
+    >
+    <mat-error *ngIf="password.hasError('required')">
+      Password is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="password.hasError('minlength')">
+      Password length need to be more than 5 symbols (now is {{password.errors?.['minlength']['actualLength']}})
+    </mat-error>
+  </mat-form-field>
+  <p>Don't have account? <a routerLink="/registration">Registration</a></p>
+  <button
+    [disabled]="form.invalid"
+    mat-raised-button
+    color="primary"
+    type="submit"
+    class="login-form_submit-btn"
+  >Login</button>
+</form>

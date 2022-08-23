@@ -1,4 +1,12 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "email": "Viktor_Verbytskyi@epam.com",
+      "password": "123123",
+      "name": "admin"
+    }
+  ],
   "posts": [
     { "id": 1, "title": "json-server", "author": "typicode" }
   ],

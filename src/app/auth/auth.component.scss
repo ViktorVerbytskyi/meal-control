@@ -1,0 +1,15 @@
+.authorization-mat-card {
+  width: 300px;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &-header {
+    justify-content: center;
+  }
+
+  &-content {
+    text-align: center;
+  }
+}
