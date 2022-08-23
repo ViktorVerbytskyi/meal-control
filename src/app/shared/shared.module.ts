@@ -6,7 +6,6 @@ import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { MessageService } from "./services/message.service";
 
 @NgModule({
   imports: [
@@ -25,4 +24,4 @@ import { MessageService } from "./services/message.service";
   ],
   declarations: []
 })
-export class SharedModule {}
+export class SharedModule { }
