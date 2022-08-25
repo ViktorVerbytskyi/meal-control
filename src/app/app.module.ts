@@ -10,6 +10,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { UsersService } from "./shared/services/users.service";
 import { MessageService } from "./shared/services/message.service";
 import { AuthService } from "./shared/services/auth.service";
+import { AsyncValidators } from "./shared/customValidators/AsyncValidators";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { AuthService } from "./shared/services/auth.service";
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [UsersService, MessageService, AuthService],
+  providers: [UsersService, MessageService, AuthService, AsyncValidators],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

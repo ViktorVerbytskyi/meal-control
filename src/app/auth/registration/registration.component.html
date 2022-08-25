@@ -1,4 +1,19 @@
 <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field class="name-field" appearance="outline">
+    <mat-label>Name</mat-label>
+    <input
+      matInput
+      type="text"
+      name="name"
+      formControlName="name"
+    >
+    <mat-error *ngIf="name.hasError('minlength')">
+      Name length need to be more than 5 symbols (now is {{name.errors?.['minlength']['actualLength']}})
+    </mat-error>
+    <mat-error *ngIf="name.hasError('required')">
+      Name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
   <mat-form-field class="login-field" appearance="outline">
     <mat-label>Login</mat-label>
     <input
@@ -7,6 +22,9 @@
       name="email"
       formControlName="email"
     >
+    <mat-error *ngIf="form.controls.email.hasError('emailIsUsed') && !form.controls.email.hasError('required')">
+      This email is exist in system
+    </mat-error>
     <mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
       Please enter a valid email address
     </mat-error>
