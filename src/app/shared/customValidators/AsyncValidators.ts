@@ -3,7 +3,16 @@ import {
   AsyncValidatorFn,
   ValidationErrors,
 } from '@angular/forms';
-import { map, Observable } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  first,
+  map,
+  Observable,
+  of,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { UsersService } from '../services/users.service';
 import { User } from '../models/user.model';
 import { Injectable } from '@angular/core';
@@ -16,14 +25,20 @@ export class AsyncValidators {
 
   checkUserForEmail(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.userService.getUserByEmail(control.value).pipe(
-        map((user: User) => {
-          if (control.value === user.email) {
-            return { emailIsUsed: true };
-          } else {
-            return null;
-          }
-        })
+      return of(control.value).pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        tap(() => control.markAsTouched()),
+        switchMap((value: string) => {
+          return this.userService
+            .getUserByEmail(value)
+            .pipe(
+              map((user: User) =>
+                value === user.email ? { emailIsUsed: true } : null
+              )
+            );
+        }),
+        first()
       );
     };
   }
