@@ -1,0 +1,35 @@
+.system-container {
+  background-color: ghostwhite;
+  height: calc(100vh - 64px);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 300px auto;
+  grid-template-areas: "sidebar content";
+
+  .system-menu {
+    grid-area: sidebar;
+    height: 100%;
+    border-right: 1px solid lightgrey;
+
+    &-link {
+      cursor: pointer;
+      border-bottom: 1px solid ghostwhite;
+    }
+
+    &-link:hover {
+      border-bottom: 1px solid lightblue;
+    }
+
+    .active-link {
+      background-color: lightblue;
+      border-bottom: 1px solid lightblue;
+    }
+  }
+
+  .system-content {
+    grid-area: content;
+    height: 100%;
+  }
+}
+
+
