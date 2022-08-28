@@ -1,0 +1,48 @@
+.db-page-filter {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.db-page-table {
+  width: 100%;
+
+  &_name {
+    width: 300px;
+  }
+
+  &_proteins,
+  &_fats,
+  &_carbohydrates {
+    width: 100px;
+  }
+
+  &_expand {
+    text-align: right;
+  }
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+tr.element-row:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.element-row:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.element-description {
+  padding: 16px;
+}

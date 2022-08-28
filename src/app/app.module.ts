@@ -12,6 +12,7 @@ import { MessageService } from './shared/services/message.service';
 import { AuthService } from './shared/services/auth.service';
 import { AsyncValidators } from './shared/customValidators/AsyncValidators';
 import { SystemModule } from './system/system.module';
+import { MealsService } from './shared/services/meals.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +25,13 @@ import { SystemModule } from './system/system.module';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [UsersService, MessageService, AuthService, AsyncValidators],
+  providers: [
+    UsersService,
+    MessageService,
+    AuthService,
+    AsyncValidators,
+    MealsService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

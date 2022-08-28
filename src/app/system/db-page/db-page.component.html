@@ -1,1 +1,57 @@
-<p>db-page works!</p>
+<mat-form-field class="db-page-filter" appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Type name of meal">
+</mat-form-field>
+<table mat-table
+       *ngIf="dataSource.data.length; else loading"
+       [dataSource]="dataSource" multiTemplateDataRows
+       class="mat-elevation-z8 db-page-table">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name:</th>
+    <td mat-cell *matCellDef="let element" class="db-page-table_name"> {{element['name']}} </td>
+  </ng-container>
+  <ng-container matColumnDef="proteins">
+    <th mat-header-cell *matHeaderCellDef>Proteins:</th>
+    <td mat-cell *matCellDef="let element" class="db-page-table_proteins"> {{element['proteins']}} </td>
+  </ng-container>
+  <ng-container matColumnDef="fats">
+    <th mat-header-cell *matHeaderCellDef>Fats:</th>
+    <td mat-cell *matCellDef="let element" class="db-page-table_fats"> {{element['fats']}} </td>
+  </ng-container>
+  <ng-container matColumnDef="carbohydrates">
+    <th mat-header-cell *matHeaderCellDef>Carbohydrates:</th>
+    <td mat-cell *matCellDef="let element" class="db-page-table_carbohydrates"> {{element['carbohydrates']}} </td>
+  </ng-container>
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+    <td mat-cell *matCellDef="let element" class="db-page-table_expand">
+      <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+        <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+      <div class="element-detail"
+           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="element-description">
+          {{element.description}}
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+      class="element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+</table>
+
+<ng-template #loading>
+  <mat-spinner class="spinner"></mat-spinner>
+</ng-template>

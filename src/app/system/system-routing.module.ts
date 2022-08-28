@@ -10,6 +10,7 @@ const routes: Routes = [
     path: 'system',
     component: SystemComponent,
     children: [
+      { path: '', redirectTo: 'meal-page', pathMatch: 'full' },
       { path: 'db-page', component: DbPageComponent },
       { path: 'meal-page', component: MealPageComponent },
     ],

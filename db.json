@@ -7,21 +7,22 @@
       "name": "admin"
     }
   ],
-  "posts": [
+  "meals": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "name": "Meat",
+      "proteins": 100,
+      "fats": 200,
+      "carbohydrates": 300,
+      "description": "Meat is so good!"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 2,
+      "name": "Beer",
+      "proteins": 500,
+      "fats": 400,
+      "carbohydrates": 600,
+      "description": "Bear is so great!"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
