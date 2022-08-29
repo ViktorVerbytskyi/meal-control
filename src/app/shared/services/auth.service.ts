@@ -1,8 +1,9 @@
-import { User } from "../models/user.model";
-import {Injectable} from "@angular/core";
+import { Injectable } from '@angular/core';
+
+import { User } from '../models/user.model';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class AuthService {
   private isAuthenticated = false;
@@ -15,7 +16,7 @@ export class AuthService {
 
   logout(): void {
     if (localStorage.getItem('user')) {
-      localStorage.removeItem('user')
+      localStorage.removeItem('user');
     }
     this.isAuthenticated = false;
   }

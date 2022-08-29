@@ -1,8 +1,9 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button mat-icon-button class="menu-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Meal Control</span>
+  <span class="menu-title">Meal Control ({{ userName }})</span>
+  <span class="menu-date">{{ date | date:"dd / MM / yyyy" }}</span>
 </mat-toolbar>
 
 <div class="system-container">
