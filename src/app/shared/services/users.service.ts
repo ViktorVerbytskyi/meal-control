@@ -1,16 +1,17 @@
-import { Injectable } from "@angular/core";
-import { map, Observable } from "rxjs";
-import { emptyUser, User } from "../models/user.model";
-import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
+
+import { emptyUser, User } from '../models/user.model';
+import { ApiService } from './api.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class UsersService {
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
 
   getUserByEmail(email: string): Observable<User> {
-    return this.http.get<User[]>(`http://localhost:3000/users?email=${email}`).pipe(
+    return this.apiService.get(`users?email=${email}`).pipe(
       map((user: User[]) => {
         return user[0] ? user[0] : emptyUser;
       })
@@ -18,6 +19,6 @@ export class UsersService {
   }
 
   createNewUser(user: User): Observable<User> {
-    return this.http.post<User>('http://localhost:3000/users', user);
+    return this.apiService.post('users', user);
   }
 }
