@@ -1,1 +1,10 @@
-<p>meal-page works!</p>
+<div *ngIf="userMeals.length; else loading">
+  <app-user-meals-table [userMeals]="userMeals"></app-user-meals-table>
+  <app-user-meals-table [userMeals]="userMeals"></app-user-meals-table>
+  <app-user-meals-table [userMeals]="userMeals"></app-user-meals-table>
+  <app-user-meals-table [userMeals]="userMeals"></app-user-meals-table>
+</div>
+
+<ng-template #loading>
+  <mat-spinner class="spinner"></mat-spinner>
+</ng-template>

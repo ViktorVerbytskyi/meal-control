@@ -1,0 +1,44 @@
+<div class="mat-elevation-z8 user-meals_container">
+  <p class="user-meals_container_title">Breakfast</p>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="user-meals_container_table"
+    *ngIf="dataSource.length; else tableMessage"
+  >
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name:</th>
+      <td class="user-meals_container_table_name" mat-cell *matCellDef="let element"> {{element['meal']['name']}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="proteins">
+      <th mat-header-cell *matHeaderCellDef>Proteins:</th>
+      <td class="user-meals_container_table_proteins" mat-cell *matCellDef="let element"> {{element['meal']['proteins']}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fats">
+      <th mat-header-cell *matHeaderCellDef>Fats:</th>
+      <td class="user-meals_container_table_fats" mat-cell *matCellDef="let element"> {{element['meal']['fats']}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="carbohydrates">
+      <th mat-header-cell *matHeaderCellDef>Carboh.:</th>
+      <td class="user-meals_container_table_carbohydrates" mat-cell *matCellDef="let element"> {{element['meal']['carbohydrates']}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="mealWeight">
+      <th mat-header-cell *matHeaderCellDef>Weight:</th>
+      <td class="user-meals_container_table_mealWeight" mat-cell *matCellDef="let element"> {{element['mealWeight']}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr class="user-meals_container_table_row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<ng-template #tableMessage>
+  <div class="user-meals_container_table_message mat-elevation-z8">
+    There are not information yet.
+  </div>
+</ng-template>
+

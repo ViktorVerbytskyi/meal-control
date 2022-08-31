@@ -24,5 +24,23 @@
       "carbohydrates": 600,
       "description": "Bear is so great!"
     }
+  ],
+  "userMeals": [
+    {
+      "userId": 1,
+      "mealId": 1,
+      "mealWeight": 500,
+      "portionType": "gram",
+      "date": "30/08/2022",
+      "periodOfDay": "dinner"
+    },
+    {
+      "userId": 1,
+      "mealId": 2,
+      "mealWeight": 500,
+      "portionType": "gram",
+      "date": "30/08/2022",
+      "periodOfDay": "dinner"
+    }
   ]
 }

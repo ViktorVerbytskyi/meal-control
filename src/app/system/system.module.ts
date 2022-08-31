@@ -21,8 +21,6 @@ import { SharedModule } from '../shared/shared.module';
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
-    MatTableModule,
-    MatProgressSpinnerModule,
   ],
 })
 export class SystemModule {}
