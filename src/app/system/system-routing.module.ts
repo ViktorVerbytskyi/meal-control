@@ -7,7 +7,7 @@ import { MealPageComponent } from './meal-page/meal-page.component';
 
 const routes: Routes = [
   {
-    path: 'system',
+    path: '',
     component: SystemComponent,
     children: [
       { path: '', redirectTo: 'meal-page', pathMatch: 'full' },

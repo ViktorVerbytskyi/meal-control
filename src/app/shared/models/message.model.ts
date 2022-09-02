@@ -1,6 +1,7 @@
 export enum MessageText {
   LoginSuccessful = 'Login is successful',
   LogoutSuccessful = 'Logout is successful',
+  AccessDenied = 'Access denied! Need to login!',
   PasswordIsNotCorrect = "Password isn't correct",
   UserIsNotExist = "This user isn't exist",
   PasswordsAreNotTheSame = 'Passwords are not the same!',

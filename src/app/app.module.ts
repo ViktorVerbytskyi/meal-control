@@ -11,8 +11,8 @@ import { UsersService } from './shared/services/users.service';
 import { MessageService } from './shared/services/message.service';
 import { AuthService } from './shared/services/auth.service';
 import { AsyncValidators } from './shared/customValidators/AsyncValidators';
-import { SystemModule } from './system/system.module';
 import { MealsService } from './shared/services/meals.service';
+import { AuthGuard } from './shared/services/auth.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +21,6 @@ import { MealsService } from './shared/services/meals.service';
     MatButtonModule,
     BrowserAnimationsModule,
     AuthModule,
-    SystemModule,
     AppRoutingModule,
     HttpClientModule,
   ],
@@ -29,6 +28,7 @@ import { MealsService } from './shared/services/meals.service';
     UsersService,
     MessageService,
     AuthService,
+    AuthGuard,
     AsyncValidators,
     MealsService,
   ],
