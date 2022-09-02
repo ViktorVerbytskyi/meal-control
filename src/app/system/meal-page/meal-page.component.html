@@ -1,8 +1,12 @@
-<div *ngIf="userMeals.length; else loading">
-  <app-user-meals-table [userMeals]="userMeals"></app-user-meals-table>
-  <app-user-meals-table [userMeals]="userMeals"></app-user-meals-table>
-  <app-user-meals-table [userMeals]="userMeals"></app-user-meals-table>
-  <app-user-meals-table [userMeals]="userMeals"></app-user-meals-table>
+<ng-component *ngIf="userMealSettings$ | async"></ng-component>
+
+<div *ngIf="userMeals; else loading">
+  <div class="meal-page-container">
+    <app-user-meals-table [setting]="breakfastSetting"></app-user-meals-table>
+    <app-user-meals-table [setting]="launchSetting"></app-user-meals-table>
+    <app-user-meals-table [setting]="dinnerSetting"></app-user-meals-table>
+    <app-user-meals-table [setting]="snackingSetting"></app-user-meals-table>
+  </div>
 </div>
 
 <ng-template #loading>

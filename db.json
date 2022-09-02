@@ -32,7 +32,7 @@
       "mealWeight": 500,
       "portionType": "gram",
       "date": "30/08/2022",
-      "periodOfDay": "dinner"
+      "periodOfDay": "Dinner"
     },
     {
       "userId": 1,
@@ -40,7 +40,55 @@
       "mealWeight": 500,
       "portionType": "gram",
       "date": "30/08/2022",
-      "periodOfDay": "dinner"
+      "periodOfDay": "Dinner"
+    },
+    {
+      "userId": 1,
+      "mealId": 1,
+      "mealWeight": 500,
+      "portionType": "gram",
+      "date": "30/08/2022",
+      "periodOfDay": "Breakfast"
+    },
+    {
+      "userId": 1,
+      "mealId": 2,
+      "mealWeight": 500,
+      "portionType": "gram",
+      "date": "30/08/2022",
+      "periodOfDay": "Breakfast"
+    },
+    {
+      "userId": 1,
+      "mealId": 1,
+      "mealWeight": 500,
+      "portionType": "gram",
+      "date": "30/08/2022",
+      "periodOfDay": "Launch"
+    },
+    {
+      "userId": 1,
+      "mealId": 2,
+      "mealWeight": 500,
+      "portionType": "gram",
+      "date": "30/08/2022",
+      "periodOfDay": "Launch"
+    },
+    {
+      "userId": 1,
+      "mealId": 1,
+      "mealWeight": 500,
+      "portionType": "gram",
+      "date": "30/08/2022",
+      "periodOfDay": "Snacking"
+    },
+    {
+      "userId": 1,
+      "mealId": 2,
+      "mealWeight": 500,
+      "portionType": "gram",
+      "date": "30/08/2022",
+      "periodOfDay": "Snacking"
     }
   ]
 }

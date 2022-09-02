@@ -1,10 +1,11 @@
-<div class="mat-elevation-z8 user-meals_container">
-  <p class="user-meals_container_title">Breakfast</p>
+<mat-card class="user-meals_container">
+  <mat-card-subtitle class="user-meals_container_title">{{ setting.type }}</mat-card-subtitle>
+  <mat-divider></mat-divider>
   <table
     mat-table
-    [dataSource]="dataSource"
+    [dataSource]="setting.userMeals"
     class="user-meals_container_table"
-    *ngIf="dataSource.length; else tableMessage"
+    *ngIf="setting.userMeals.length; else tableMessage"
   >
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name:</th>
@@ -34,10 +35,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr class="user-meals_container_table_row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-</div>
+</mat-card>
 
 <ng-template #tableMessage>
-  <div class="user-meals_container_table_message mat-elevation-z8">
+  <div class="user-meals_container_table_message">
     There are not information yet.
   </div>
 </ng-template>
