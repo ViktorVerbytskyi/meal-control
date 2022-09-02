@@ -18,6 +18,16 @@ export class UsersService {
     );
   }
 
+  getUserByEmailAndPassword(email: string, password: string): Observable<User> {
+    return this.apiService
+      .get(`users?email=${email}&password=${password}`)
+      .pipe(
+        map((user: User[]) => {
+          return user[0] ? user[0] : emptyUser;
+        })
+      );
+  }
+
   createNewUser(user: User): Observable<User> {
     return this.apiService.post('users', user);
   }

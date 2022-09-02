@@ -31,25 +31,18 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.usersService
-      .getUserByEmail(this.email.value)
+      .getUserByEmailAndPassword(this.email.value, this.password.value)
       .subscribe((user: User) => {
         if (user.email) {
-          if (user.password === this.password.value) {
-            this.authService.login(user);
-            this.messageService.openSnackBar(
-              MessageText.LoginSuccessful,
-              MessageType.Success
-            );
-            this.router.navigate(['/system/meal-page']);
-          } else {
-            this.messageService.openSnackBar(
-              MessageText.PasswordIsNotCorrect,
-              MessageType.Error
-            );
-          }
+          this.authService.login(user);
+          this.messageService.openSnackBar(
+            MessageText.LoginSuccessful,
+            MessageType.Success
+          );
+          this.router.navigate(['/system']);
         } else {
           this.messageService.openSnackBar(
-            MessageText.UserIsNotExist,
+            MessageText.LoginOrPasswordIsNotCorrect,
             MessageType.Error
           );
         }

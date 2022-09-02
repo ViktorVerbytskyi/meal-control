@@ -36,7 +36,6 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    console.log(this.form);
     if (this.password.value === this.password2.value) {
       const user: User = {
         name: this.name.value,
