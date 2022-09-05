@@ -11,6 +11,7 @@
     {
       "id": 1,
       "name": "Meat",
+      "calories": 100,
       "proteins": 100,
       "fats": 200,
       "carbohydrates": 300,
@@ -19,6 +20,7 @@
     {
       "id": 2,
       "name": "Beer",
+      "calories": 100,
       "proteins": 500,
       "fats": 400,
       "carbohydrates": 600,

@@ -1,0 +1,24 @@
+.add-user-meal-dialog-form {
+  width: 100%;
+
+  &_meal-name {
+    width: 100%;
+  }
+
+  &_meal-weight,
+  &_period-of-day {
+    width: 50%;
+  }
+
+  &_meal-info {
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid lightgrey;
+    padding: 15px;
+  }
+
+  &_btn {
+    margin: 15px;
+  }
+}

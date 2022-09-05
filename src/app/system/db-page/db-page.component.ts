@@ -9,6 +9,8 @@ import {
 import { Meal } from '../../shared/models/meal.model';
 import { MealsService } from '../../shared/services/meals.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { AddUserMealDialogComponent } from '../add-user-meal-dialog/add-user-meal-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-db-page',
@@ -31,7 +33,7 @@ export class DbPageComponent implements OnInit {
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: Meal | null = null;
 
-  constructor(private mealsService: MealsService) {}
+  constructor(private mealsService: MealsService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.mealsService.getAllMeals().subscribe((meals: Meal[]) => {
@@ -42,5 +44,9 @@ export class DbPageComponent implements OnInit {
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  showAddUserMealDialog() {
+    this.dialog.open(AddUserMealDialogComponent, { width: '400px' });
   }
 }

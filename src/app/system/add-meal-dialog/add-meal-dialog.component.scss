@@ -1,0 +1,19 @@
+.add-meal-dialog-form {
+  width: 100%;
+
+  &_name,
+  &_description {
+    width: 100%;
+  }
+
+  &_calories,
+  &_proteins,
+  &_fats,
+  &_carbohydrates {
+    width: 50%;
+  }
+
+  &_btn {
+    margin: 15px;
+  }
+}

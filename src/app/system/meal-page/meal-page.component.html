@@ -2,6 +2,13 @@
 
 <div *ngIf="userMeals; else loading">
   <div class="meal-page-container">
+    <button
+      mat-fab
+      color="warn"
+      (click)="showAddUserMealDialog()"
+    >
+      <mat-icon>home</mat-icon>
+    </button>
     <app-user-meals-table [setting]="breakfastSetting"></app-user-meals-table>
     <app-user-meals-table [setting]="launchSetting"></app-user-meals-table>
     <app-user-meals-table [setting]="dinnerSetting"></app-user-meals-table>

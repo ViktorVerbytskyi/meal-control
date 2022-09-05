@@ -1,6 +1,14 @@
+export enum PeriodOfDay {
+  Breakfast = 'Breakfast',
+  Launch = 'Launch',
+  Dinner = 'Dinner',
+  Snacking = 'Snacking',
+}
+
 export const emptyMeal: Meal = {
   id: 0,
   name: '',
+  calories: 0,
   proteins: 0,
   fats: 0,
   carbohydrates: 0,
@@ -10,27 +18,9 @@ export const emptyMeal: Meal = {
 export interface Meal {
   id: number;
   name: string;
+  calories: number;
   proteins: number;
   fats: number;
   carbohydrates: number;
   description: string;
 }
-
-export const mockMeals: Meal[] = [
-  {
-    id: 1,
-    name: 'Meat',
-    proteins: 100,
-    fats: 200,
-    carbohydrates: 300,
-    description: 'Meat is so good!',
-  },
-  {
-    id: 2,
-    name: 'Beer',
-    proteins: 500,
-    fats: 400,
-    carbohydrates: 600,
-    description: 'Bear is so great!',
-  },
-];
