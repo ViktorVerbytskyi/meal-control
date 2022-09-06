@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {
   animate,
   state,
@@ -6,11 +7,11 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Meal } from '../../shared/models/meal.model';
-import { MealsService } from '../../shared/services/meals.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { AddUserMealDialogComponent } from '../add-user-meal-dialog/add-user-meal-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+
+import { MealsService } from '../../shared/services/meals.service';
+import { Meal } from '../../shared/models/meal.model';
+import { AddMealDialogComponent } from '../add-meal-dialog/add-meal-dialog.component';
 
 @Component({
   selector: 'app-db-page',
@@ -46,7 +47,7 @@ export class DbPageComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  showAddUserMealDialog() {
-    this.dialog.open(AddUserMealDialogComponent, { width: '400px' });
+  showAddMealDialog() {
+    this.dialog.open(AddMealDialogComponent, { width: '400px' });
   }
 }

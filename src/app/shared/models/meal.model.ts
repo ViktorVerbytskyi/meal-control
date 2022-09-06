@@ -16,11 +16,11 @@ export const emptyMeal: Meal = {
 };
 
 export interface Meal {
-  id: number;
+  id?: number;
   name: string;
   calories: number;
   proteins: number;
   fats: number;
   carbohydrates: number;
-  description: string;
+  description?: string;
 }

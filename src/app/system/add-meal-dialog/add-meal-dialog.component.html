@@ -1,9 +1,9 @@
 <app-common-user-meal-dialog>
-  <div common-user-meal-dialog-title>Add meal to diary</div>
+  <div common-user-meal-dialog-title>Add meal to data base</div>
   <div common-user-meal-dialog-content>
     <form class="add-meal-dialog-form" [formGroup]="form">
       <mat-form-field class="add-meal-dialog-form_name" appearance="outline">
-        <mat-label>Name:</mat-label>
+        <mat-label>Meal name:</mat-label>
         <input
           matInput
           type="text"
@@ -11,7 +11,7 @@
           formControlName="name"
         >
         <mat-error *ngIf="name.hasError('required')">
-          Name is <strong>required</strong>
+          Meal name is <strong>required</strong>
         </mat-error>
       </mat-form-field>
 

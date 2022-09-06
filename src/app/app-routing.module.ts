@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'system',
-    canActivate: [AuthGuard],
+    //TODO: add AuthGuard
+    canActivate: [],
     loadChildren: () =>
       import('./system/system.module').then((m) => m.SystemModule),
   },

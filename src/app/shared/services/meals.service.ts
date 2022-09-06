@@ -18,4 +18,8 @@ export class MealsService {
   getAllUserMeals(): Observable<UserMeal[]> {
     return this.apiService.get('userMeals').pipe(delay(500));
   }
+
+  addMealToDB(meal: Meal): Observable<Meal> {
+    return this.apiService.post('meals', meal).pipe(delay(500));
+  }
 }
