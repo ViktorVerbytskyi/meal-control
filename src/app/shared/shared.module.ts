@@ -9,8 +9,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { UserMealsTableComponent } from './components/user-meals-table/user-meals-table.component';
+import { CommonUserMealDialogComponent } from './components/common-user-meal-dialog/common-user-meal-dialog.component';
 
 @NgModule({
   imports: [
@@ -22,6 +24,8 @@ import { UserMealsTableComponent } from './components/user-meals-table/user-meal
     MatCardModule,
     MatButtonModule,
     MatDividerModule,
+    MatDialogModule,
+    MatIconModule,
   ],
   exports: [
     ReactiveFormsModule,
@@ -35,7 +39,9 @@ import { UserMealsTableComponent } from './components/user-meals-table/user-meal
     UserMealsTableComponent,
     MatTableModule,
     MatProgressSpinnerModule,
+    CommonUserMealDialogComponent,
+    MatDialogModule,
   ],
-  declarations: [UserMealsTableComponent],
+  declarations: [UserMealsTableComponent, CommonUserMealDialogComponent],
 })
 export class SharedModule {}

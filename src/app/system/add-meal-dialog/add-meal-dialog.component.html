@@ -1,0 +1,90 @@
+<app-common-user-meal-dialog>
+  <div common-user-meal-dialog-title>Add meal to diary</div>
+  <div common-user-meal-dialog-content>
+    <form class="add-meal-dialog-form" [formGroup]="form">
+      <mat-form-field class="add-meal-dialog-form_name" appearance="outline">
+        <mat-label>Name:</mat-label>
+        <input
+          matInput
+          type="text"
+          name="name"
+          formControlName="name"
+        >
+        <mat-error *ngIf="name.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="add-meal-dialog-form_calories" appearance="outline">
+        <mat-label>Calories:</mat-label>
+        <input
+          matInput
+          type="number"
+          name="calories"
+          formControlName="calories"
+        >
+        <mat-error *ngIf="calories.hasError('required')">
+          Calories is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="add-meal-dialog-form_proteins" appearance="outline">
+        <mat-label>Proteins:</mat-label>
+        <input
+          matInput
+          type="number"
+          name="proteins"
+          formControlName="proteins"
+        >
+        <mat-error *ngIf="proteins.hasError('required')">
+          Proteins is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="add-meal-dialog-form_fats" appearance="outline">
+        <mat-label>Fats:</mat-label>
+        <input
+          matInput
+          type="number"
+          name="fats"
+          formControlName="fats"
+        >
+        <mat-error *ngIf="fats.hasError('required')">
+          Fats is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="add-meal-dialog-form_carbohydrates" appearance="outline">
+        <mat-label>Carbohydrates:</mat-label>
+        <input
+          matInput
+          type="number"
+          name="carbohydrates"
+          formControlName="carbohydrates"
+        >
+        <mat-error *ngIf="carbohydrates.hasError('required')">
+          Carbohydrates is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="add-meal-dialog-form_description" appearance="outline">
+        <mat-label>Description:</mat-label>
+        <textarea
+          matInput
+          name="description"
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+    </form>
+  </div>
+  <div common-user-meal-dialog-action>
+    <button
+      mat-stroked-button
+      color="primary"
+      class="add-meal-dialog-form_btn"
+      [mat-dialog-close]="true"
+      [disabled]="!form.valid"
+      (click)="onSubmit()"
+    >Add</button>
+  </div>
+</app-common-user-meal-dialog>

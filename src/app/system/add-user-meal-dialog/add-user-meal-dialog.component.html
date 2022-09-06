@@ -1,0 +1,78 @@
+<ng-template [ngIf]="allMeals$ | async"></ng-template>
+<app-common-user-meal-dialog>
+  <div common-user-meal-dialog-title>Add meal to diary</div>
+  <div common-user-meal-dialog-content>
+    <form class="add-user-meal-dialog-form" [formGroup]="form">
+      <mat-form-field class="add-user-meal-dialog-form_meal-name" appearance="outline">
+        <mat-label>Meal's name:</mat-label>
+        <input
+          matInput
+          type="text"
+          name="mealName"
+          formControlName="mealName"
+          [matAutocomplete]="auto"
+        >
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let meal of filteredMeals | async"
+            [value]="meal.name"
+            (click)="onClickMealOption(meal)"
+          >
+            {{meal.name}}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="mealName.hasError('required')">
+          Meal's name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="add-user-meal-dialog-form_meal-weight" appearance="outline">
+        <mat-label>Meal weight:</mat-label>
+        <input
+          matInput
+          type="number"
+          name="mealWeight"
+          formControlName="mealWeight"
+          #mealWeightEl
+          (input)="onChangeMealWeight(mealWeightEl.value)"
+        >
+        <mat-error *ngIf="mealWeight.hasError('required')">
+          Weight of meal is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="add-user-meal-dialog-form_period-of-day" appearance="outline">
+        <mat-label>Period of day:</mat-label>
+        <mat-select
+          name="periodOfDay"
+          formControlName="periodOfDay"
+        >
+          <mat-option *ngFor="let period of periodsOfDay" [value]="period">
+            {{period}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="periodOfDay.hasError('required')">
+          Period of day is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <div class="add-user-meal-dialog-form_meal-info">
+        <div>Meal info:</div>
+        <div>Meal's name: {{mealInfo.name}}</div>
+        <div>Calories: {{mealInfo.calories}}</div>
+        <div>Proteins: {{mealInfo.proteins}}</div>
+        <div>Fats: {{mealInfo.fats}}</div>
+        <div>Carbohydrates: {{mealInfo.carbohydrates}}</div>
+      </div>
+    </form>
+  </div>
+  <div common-user-meal-dialog-action>
+    <button
+      mat-stroked-button
+      color="primary"
+      class="add-user-meal-dialog-form_btn"
+      [mat-dialog-close]="true"
+      [disabled]="!form.valid"
+      (click)="onSubmit()"
+    >Add</button>
+  </div>
+</app-common-user-meal-dialog>

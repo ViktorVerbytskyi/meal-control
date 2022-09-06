@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { combineLatest, map, Observable, tap } from 'rxjs';
 
 import {
   PeriodOfDayType,
@@ -6,8 +8,8 @@ import {
   UserMealSetting,
 } from '../../shared/models/userMeal.model';
 import { MealsService } from '../../shared/services/meals.service';
-import { combineLatest, map, Observable, tap } from 'rxjs';
 import { Meal } from '../../shared/models/meal.model';
+import { AddUserMealDialogComponent } from '../add-user-meal-dialog/add-user-meal-dialog.component';
 
 @Component({
   selector: 'app-meal-page',
@@ -23,7 +25,7 @@ export class MealPageComponent implements OnInit {
   userMeals!: UserMeal[];
   userMealSettings$!: Observable<UserMealSetting[]>;
 
-  constructor(private mealsService: MealsService) {}
+  constructor(private mealsService: MealsService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.userMealSettings$ = combineLatest<[UserMeal[], Meal[]]>(
@@ -90,5 +92,9 @@ export class MealPageComponent implements OnInit {
         }
       )
     );
+  }
+
+  showAddUserMealDialog() {
+    this.dialog.open(AddUserMealDialogComponent, { width: '400px' });
   }
 }
