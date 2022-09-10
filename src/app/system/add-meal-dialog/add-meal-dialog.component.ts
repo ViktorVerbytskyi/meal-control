@@ -23,7 +23,6 @@ export class AddMealDialogComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log(this.form.value);
     const meal: Meal = {
       name: this.name.value ? this.name.value : '',
       calories: this.calories.value ? +this.calories.value : 0,

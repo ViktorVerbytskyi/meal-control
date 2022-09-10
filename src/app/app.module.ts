@@ -13,6 +13,7 @@ import { AuthService } from './shared/services/auth.service';
 import { AsyncValidators } from './shared/customValidators/AsyncValidators';
 import { MealsService } from './shared/services/meals.service';
 import { AuthGuard } from './shared/services/auth.guard';
+import { RootStoreModule } from './@ngrx/root-store.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,8 +22,9 @@ import { AuthGuard } from './shared/services/auth.guard';
     MatButtonModule,
     BrowserAnimationsModule,
     AuthModule,
-    AppRoutingModule,
     HttpClientModule,
+    RootStoreModule,
+    AppRoutingModule,
   ],
   providers: [
     UsersService,
