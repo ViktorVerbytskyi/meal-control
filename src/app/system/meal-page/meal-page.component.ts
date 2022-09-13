@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { combineLatest, map, Observable, tap } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import {
   PeriodOfDayType,
@@ -10,6 +11,8 @@ import {
 import { MealsService } from '../../shared/services/meals.service';
 import { Meal } from '../../shared/models/meal.model';
 import { AddUserMealDialogComponent } from '../add-user-meal-dialog/add-user-meal-dialog.component';
+import { AppState, UsersState } from '../../@ngrx';
+import * as UserActions from '../../@ngrx/users/users.actions';
 
 @Component({
   selector: 'app-meal-page',
@@ -24,10 +27,22 @@ export class MealPageComponent implements OnInit {
 
   userMeals!: UserMeal[];
   userMealSettings$!: Observable<UserMealSetting[]>;
+  userState$!: Observable<UsersState>;
 
-  constructor(private mealsService: MealsService, public dialog: MatDialog) {}
+  constructor(
+    private mealsService: MealsService,
+    public dialog: MatDialog,
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
+    //TODO: it's example how to select data from store
+    this.userState$ = this.store.select('users').pipe(
+      tap((usersState: UsersState) => {
+        console.log(usersState);
+      })
+    );
+
     this.userMealSettings$ = combineLatest<[UserMeal[], Meal[]]>(
       this.mealsService.getAllUserMeals(),
       this.mealsService.getAllMeals()
@@ -94,7 +109,12 @@ export class MealPageComponent implements OnInit {
     );
   }
 
-  showAddUserMealDialog() {
+  showAddUserMealDialog(): void {
     this.dialog.open(AddUserMealDialogComponent, { width: '400px' });
+  }
+
+  //TODO: it's example how to dispatch data in store
+  changeUserName(): void {
+    this.store.dispatch(UserActions.changeUserName({ name: 'Viktor' }));
   }
 }

@@ -8,5 +8,10 @@ export const getUser = createAction(
 
 export const addUser = createAction(
   '[Registration page] ADD_USER',
-  props<{ user: User }>
+  props<{ user: User }>()
+);
+
+export const changeUserName = createAction(
+  '[meal-page] CHANGE_USER_NAME',
+  props<{ name: string }>()
 );
