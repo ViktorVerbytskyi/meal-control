@@ -1,4 +1,5 @@
 <ng-component *ngIf="userMealSettings$ | async"></ng-component>
+<ng-container *ngIf="(userState$ | async) as userState"></ng-container>
 
 <mat-form-field appearance="outline">
   <mat-label>Choose a date</mat-label>
@@ -14,6 +15,13 @@
       mat-fab
       color="warn"
       (click)="showAddUserMealDialog()"
+    >
+      <mat-icon>home</mat-icon>
+    </button>
+    <button
+      mat-fab
+      color="warn"
+      (click)="changeUserName()"
     >
       <mat-icon>home</mat-icon>
     </button>

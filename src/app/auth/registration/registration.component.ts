@@ -8,7 +8,6 @@ import { User } from '../../shared/models/user.model';
 import { MessageService } from '../../shared/services/message.service';
 import { MessageText, MessageType } from '../../shared/models/message.model';
 import { AsyncValidators } from '../../shared/customValidators/AsyncValidators';
-import { AppState } from '../../@ngrx';
 
 @Component({
   selector: 'app-registration',
@@ -32,13 +31,10 @@ export class RegistrationComponent implements OnInit {
     private usersService: UsersService,
     private messageService: MessageService,
     private router: Router,
-    private asyncValidators: AsyncValidators,
-    private store: Store<AppState>
+    private asyncValidators: AsyncValidators
   ) {}
 
-  ngOnInit(): void {
-    console.log('we have a store', this.store);
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.password.value === this.password2.value) {
