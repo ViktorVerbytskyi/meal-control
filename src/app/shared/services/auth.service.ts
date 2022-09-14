@@ -9,8 +9,8 @@ export class AuthService {
   private isAuthenticated = false;
 
   login(user: User): void {
-    const { name, email } = user;
-    localStorage.setItem('user', JSON.stringify({ name, email }));
+    const { id, name, email } = user;
+    localStorage.setItem('user', JSON.stringify({ id, name, email }));
     this.isAuthenticated = true;
   }
 
