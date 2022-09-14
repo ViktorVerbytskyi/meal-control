@@ -4,6 +4,7 @@ import { StoreModule } from '@ngrx/store';
 // import { EffectsModule } from '@ngrx/effects';
 
 import { UsersStoreModule } from './users/users-store.module';
+import { metaReducers } from './meta-reducers';
 
 @NgModule({
   declarations: [],
@@ -12,6 +13,7 @@ import { UsersStoreModule } from './users/users-store.module';
     StoreModule.forRoot(
       {},
       {
+        metaReducers,
         runtimeChecks: {
           strictStateImmutability: true,
           strictActionImmutability: true,
