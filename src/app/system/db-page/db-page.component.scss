@@ -10,10 +10,14 @@
     width: 300px;
   }
 
+  &_calories {
+    width: 100px;
+  }
+
   &_proteins,
   &_fats,
   &_carbohydrates {
-    width: 100px;
+    width: 60px;
   }
 
   &_expand {

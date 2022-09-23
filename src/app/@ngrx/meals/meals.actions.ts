@@ -18,3 +18,13 @@ export const addMeal = createAction(
   '[db-page (user)] ADD_MEAL',
   props<{ newMeal: Meal }>()
 );
+
+export const addMealSuccess = createAction(
+  '[Add Meal Effect] ADD_MEAL_SUCCESS',
+  props<{ newMeal: Meal }>()
+);
+
+export const addMealError = createAction(
+  '[Add Meal Effect] ADD_MEAL_ERROR',
+  props<{ error: Error | null }>()
+);

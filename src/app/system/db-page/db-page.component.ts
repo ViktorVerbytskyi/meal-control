@@ -33,7 +33,7 @@ import * as MealsActions from '../../@ngrx/meals/meals.actions';
 })
 export class DbPageComponent implements OnInit {
   dataSource = new MatTableDataSource<Meal>([]);
-  columnsToDisplay = ['name', 'proteins', 'fats', 'carbohydrates'];
+  columnsToDisplay = ['name', 'calories', 'proteins', 'fats', 'carbohydrates'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: Meal | null = null;
   mealState$!: Observable<MealsState>;
