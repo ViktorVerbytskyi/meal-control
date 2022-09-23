@@ -21,9 +21,24 @@ const reducer = createReducer(
     return { ...state, loading: false, loaded: false, error: error };
   }),
 
-  on(MealsActions.addMeal, (state, { newMeal }) => {
-    console.log('GET_MEALS action being handled');
-    return { ...state, data: [...state.data, newMeal], loaded: true };
+  on(MealsActions.addMeal, (state) => {
+    console.log('ADD_MEAL action being handled');
+    return { ...state, loading: true };
+  }),
+
+  on(MealsActions.addMealSuccess, (state, { newMeal }) => {
+    console.log('ADD_MEAL_SUCCESS action being handled');
+    return {
+      ...state,
+      data: [...state.data, newMeal],
+      loading: false,
+      loaded: true,
+    };
+  }),
+
+  on(MealsActions.addMealError, (state, { error }) => {
+    console.log('ADD_MEAL_ERROR action being handled');
+    return { ...state, loading: false, loaded: false, error: error };
   })
 );
 

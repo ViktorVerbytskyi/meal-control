@@ -28,4 +28,20 @@ export class MealsEffects {
       })
     );
   });
+
+  addMeal$: Observable<Action> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MealsActions.addMeal),
+      switchMap((action) => {
+        return this.mealsService.addMealToDB(action.newMeal).pipe(
+          map((newMeal: Meal) => {
+            return MealsActions.addMealSuccess({ newMeal });
+          }),
+          catchError((error) => {
+            return of(MealsActions.addMealError({ error }));
+          })
+        );
+      })
+    );
+  });
 }

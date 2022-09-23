@@ -25,6 +25,24 @@
       "fats": 400,
       "carbohydrates": 600,
       "description": "Bear is so great!"
+    },
+    {
+      "name": "Bread",
+      "calories": 500,
+      "proteins": 100,
+      "fats": 200,
+      "carbohydrates": 300,
+      "description": "some description",
+      "id": 3
+    },
+    {
+      "name": "Tea",
+      "calories": 2,
+      "proteins": 0,
+      "fats": 0,
+      "carbohydrates": 0,
+      "description": "Just tea!",
+      "id": 4
     }
   ],
   "userMeals": [

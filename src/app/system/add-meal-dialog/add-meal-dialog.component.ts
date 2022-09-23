@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MealsService } from '../../shared/services/meals.service';
-import { Meal } from '../../shared/models/meal.model';
+import { Store } from '@ngrx/store';
+
+import { emptyMeal, Meal } from '../../shared/models/meal.model';
+import { AppState } from '../../@ngrx';
+import * as MealsActions from '../../@ngrx/meals/meals.actions';
 
 @Component({
   selector: 'app-add-meal-dialog',
@@ -18,20 +21,24 @@ export class AddMealDialogComponent implements OnInit {
     description: [''],
   });
 
-  constructor(private fb: FormBuilder, private mealsService: MealsService) {}
+  constructor(private fb: FormBuilder, private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    const meal: Meal = {
-      name: this.name.value ? this.name.value : '',
-      calories: this.calories.value ? +this.calories.value : 0,
-      proteins: this.proteins.value ? +this.proteins.value : 0,
-      fats: this.fats.value ? +this.fats.value : 0,
-      carbohydrates: this.carbohydrates.value ? +this.carbohydrates.value : 0,
-      description: this.description.value ? this.description.value : '',
+    const newMeal: Meal = {
+      name: this.name.value ? this.name.value : emptyMeal.name,
+      calories: this.calories.value ? +this.calories.value : emptyMeal.calories,
+      proteins: this.proteins.value ? +this.proteins.value : emptyMeal.proteins,
+      fats: this.fats.value ? +this.fats.value : emptyMeal.fats,
+      carbohydrates: this.carbohydrates.value
+        ? +this.carbohydrates.value
+        : emptyMeal.carbohydrates,
+      description: this.description.value
+        ? this.description.value
+        : emptyMeal.description,
     };
-    this.mealsService.addMealToDB(meal).subscribe();
+    this.store.dispatch(MealsActions.addMeal({ newMeal }));
   }
 
   get name() {
