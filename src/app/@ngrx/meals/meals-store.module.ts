@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
-import { usersReducer } from './users.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { UsersEffects } from './users.effects';
+
+import { mealsReducer } from './meals.reducer';
+import { MealsEffects } from './meals.effects';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forFeature('users', usersReducer),
-    EffectsModule.forFeature([UsersEffects]),
+    StoreModule.forFeature('meals', mealsReducer),
+    EffectsModule.forFeature([MealsEffects]),
   ],
 })
-export class UsersStoreModule {}
+export class MealsStoreModule {}

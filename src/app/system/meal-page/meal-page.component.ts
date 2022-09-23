@@ -11,8 +11,7 @@ import {
 import { MealsService } from '../../shared/services/meals.service';
 import { Meal } from '../../shared/models/meal.model';
 import { AddUserMealDialogComponent } from '../add-user-meal-dialog/add-user-meal-dialog.component';
-import { AppState, UsersState } from '../../@ngrx';
-import * as UserActions from '../../@ngrx/users/users.actions';
+import { AppState, MealsState } from '../../@ngrx';
 
 @Component({
   selector: 'app-meal-page',
@@ -27,7 +26,7 @@ export class MealPageComponent implements OnInit {
 
   userMeals!: UserMeal[];
   userMealSettings$!: Observable<UserMealSetting[]>;
-  userState$!: Observable<UsersState>;
+  mealsState$!: Observable<MealsState>;
 
   constructor(
     private mealsService: MealsService,
@@ -36,13 +35,7 @@ export class MealPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //TODO: it's example how to select data from store
-    this.userState$ = this.store.select('users').pipe(
-      tap((usersState: UsersState) => {
-        console.log(usersState);
-      })
-    );
-
+    this.mealsState$ = this.store.select('meals');
     this.userMealSettings$ = combineLatest<[UserMeal[], Meal[]]>(
       this.mealsService.getAllUserMeals(),
       this.mealsService.getAllMeals()
@@ -111,10 +104,5 @@ export class MealPageComponent implements OnInit {
 
   showAddUserMealDialog(): void {
     this.dialog.open(AddUserMealDialogComponent, { width: '400px' });
-  }
-
-  //TODO: it's example how to dispatch data in store
-  changeUserName(): void {
-    this.store.dispatch(UserActions.changeUserName({ name: 'Viktor' }));
   }
 }
