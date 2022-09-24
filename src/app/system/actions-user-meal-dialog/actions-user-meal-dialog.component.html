@@ -1,9 +1,10 @@
 <ng-template [ngIf]="allMeals$ | async"></ng-template>
+
 <app-common-user-meal-dialog>
   <div common-user-meal-dialog-title>Add meal to diary</div>
   <div common-user-meal-dialog-content>
-    <form class="add-user-meal-dialog-form" [formGroup]="form">
-      <mat-form-field class="add-user-meal-dialog-form_meal-name" appearance="outline">
+    <form class="actions-user-meal-dialog-form" [formGroup]="form">
+      <mat-form-field class="actions-user-meal-dialog-form_meal-name" appearance="outline">
         <mat-label>Meal's name:</mat-label>
         <input
           matInput
@@ -26,7 +27,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="add-user-meal-dialog-form_meal-weight" appearance="outline">
+      <mat-form-field class="actions-user-meal-dialog-form_meal-weight" appearance="outline">
         <mat-label>Meal weight:</mat-label>
         <input
           matInput
@@ -41,7 +42,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="add-user-meal-dialog-form_period-of-day" appearance="outline">
+      <mat-form-field class="actions-user-meal-dialog-form_period-of-day" appearance="outline">
         <mat-label>Period of day:</mat-label>
         <mat-select
           name="periodOfDay"
@@ -55,7 +56,7 @@
           Period of day is <strong>required</strong>
         </mat-error>
       </mat-form-field>
-      <div class="add-user-meal-dialog-form_meal-info">
+      <div class="actions-user-meal-dialog-form_meal-info">
         <div>Meal info:</div>
         <div>Meal's name: {{mealInfo.name}}</div>
         <div>Calories: {{mealInfo.calories}}</div>
@@ -69,7 +70,7 @@
     <button
       mat-stroked-button
       color="primary"
-      class="add-user-meal-dialog-form_btn"
+      class="actions-user-meal-dialog-form_btn"
       [mat-dialog-close]="true"
       [disabled]="!form.valid"
       (click)="onSubmit()"

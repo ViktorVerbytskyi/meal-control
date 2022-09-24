@@ -1,8 +1,8 @@
 <app-common-user-meal-dialog>
-  <div common-user-meal-dialog-title>Add meal to data base</div>
+  <div common-user-meal-dialog-title>{{ data ? actionMealDialogTitles.EditMealFromDataBase : actionMealDialogTitles.AddMealToDataBase }} </div>
   <div common-user-meal-dialog-content>
-    <form class="add-meal-dialog-form" [formGroup]="form">
-      <mat-form-field class="add-meal-dialog-form_name" appearance="outline">
+    <form class="actions-meal-dialog-form" [formGroup]="form">
+      <mat-form-field class="actions-meal-dialog-form_name" appearance="outline">
         <mat-label>Meal name:</mat-label>
         <input
           matInput
@@ -15,7 +15,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="add-meal-dialog-form_calories" appearance="outline">
+      <mat-form-field class="actions-meal-dialog-form_calories" appearance="outline">
         <mat-label>Calories:</mat-label>
         <input
           matInput
@@ -28,7 +28,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="add-meal-dialog-form_proteins" appearance="outline">
+      <mat-form-field class="actions-meal-dialog-form_proteins" appearance="outline">
         <mat-label>Proteins:</mat-label>
         <input
           matInput
@@ -41,7 +41,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="add-meal-dialog-form_fats" appearance="outline">
+      <mat-form-field class="actions-meal-dialog-form_fats" appearance="outline">
         <mat-label>Fats:</mat-label>
         <input
           matInput
@@ -54,7 +54,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="add-meal-dialog-form_carbohydrates" appearance="outline">
+      <mat-form-field class="actions-meal-dialog-form_carbohydrates" appearance="outline">
         <mat-label>Carbohydrates:</mat-label>
         <input
           matInput
@@ -67,7 +67,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="add-meal-dialog-form_description" appearance="outline">
+      <mat-form-field class="actions-meal-dialog-form_description" appearance="outline">
         <mat-label>Description:</mat-label>
         <textarea
           matInput
@@ -81,10 +81,10 @@
     <button
       mat-stroked-button
       color="primary"
-      class="add-meal-dialog-form_btn"
+      class="actions-meal-dialog-form_btn"
       [mat-dialog-close]="true"
       [disabled]="!form.valid"
       (click)="onSubmit()"
-    >Add</button>
+    >{{ data ? actionMealDialogBtn.Edit : actionMealDialogBtn.Add }}</button>
   </div>
 </app-common-user-meal-dialog>

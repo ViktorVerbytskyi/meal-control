@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import {
   animate,
   state,
@@ -8,12 +8,12 @@ import {
   trigger,
 } from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
+import { Store } from '@ngrx/store';
+import { Observable, tap } from 'rxjs';
 
 import { Meal } from '../../shared/models/meal.model';
-import { AddMealDialogComponent } from '../add-meal-dialog/add-meal-dialog.component';
-import { Observable, tap } from 'rxjs';
+import { ActionsMealDialogComponent } from '../actions-meal-dialog/actions-meal-dialog.component';
 import { AppState, MealsState } from '../../@ngrx';
-import { Store } from '@ngrx/store';
 import * as MealsActions from '../../@ngrx/meals/meals.actions';
 
 @Component({
@@ -33,7 +33,14 @@ import * as MealsActions from '../../@ngrx/meals/meals.actions';
 })
 export class DbPageComponent implements OnInit {
   dataSource = new MatTableDataSource<Meal>([]);
-  columnsToDisplay = ['name', 'calories', 'proteins', 'fats', 'carbohydrates'];
+  columnsToDisplay = [
+    'name',
+    'calories',
+    'proteins',
+    'fats',
+    'carbohydrates',
+    'actions',
+  ];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: Meal | null = null;
   mealState$!: Observable<MealsState>;
@@ -57,20 +64,13 @@ export class DbPageComponent implements OnInit {
   }
 
   showAddMealDialog() {
-    this.dialog.open(AddMealDialogComponent, { width: '400px' });
+    this.dialog.open(ActionsMealDialogComponent, { width: '400px' });
   }
 
-  //TODO: it's example how to dispatch data in store
-  addMeal(): void {
-    const newMeal = {
-      id: 3,
-      name: 'Beer',
-      calories: 100,
-      proteins: 500,
-      fats: 400,
-      carbohydrates: 600,
-      description: 'Bear is so great!',
-    };
-    this.store.dispatch(MealsActions.addMeal({ newMeal }));
+  showEditMealDialog(meal: Meal) {
+    this.dialog.open(ActionsMealDialogComponent, {
+      data: { ...meal },
+      width: '400px',
+    });
   }
 }

@@ -43,6 +43,24 @@
       "carbohydrates": 0,
       "description": "Just tea!",
       "id": 4
+    },
+    {
+      "name": "test",
+      "calories": 1,
+      "proteins": 1,
+      "fats": 1,
+      "carbohydrates": 1,
+      "description": "",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "name": "test2",
+      "calories": 2,
+      "proteins": 1,
+      "fats": 1,
+      "carbohydrates": 1,
+      "description": "1"
     }
   ],
   "userMeals": [

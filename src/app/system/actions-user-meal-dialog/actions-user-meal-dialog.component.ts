@@ -6,11 +6,11 @@ import { emptyMeal, Meal, PeriodOfDay } from '../../shared/models/meal.model';
 import { Event } from '@angular/router';
 
 @Component({
-  selector: 'app-add-user-meal-dialog',
-  templateUrl: './add-user-meal-dialog.component.html',
-  styleUrls: ['./add-user-meal-dialog.component.scss'],
+  selector: 'app-actions-user-meal-dialog',
+  templateUrl: './actions-user-meal-dialog.component.html',
+  styleUrls: ['./actions-user-meal-dialog.component.scss'],
 })
-export class AddUserMealDialogComponent implements OnInit {
+export class ActionsUserMealDialogComponent implements OnInit {
   form = this.fb.group({
     mealName: ['', [Validators.required]],
     periodOfDay: ['', [Validators.required]],

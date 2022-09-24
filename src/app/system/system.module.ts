@@ -13,18 +13,18 @@ import { DbPageComponent } from './db-page/db-page.component';
 import { MealPageComponent } from './meal-page/meal-page.component';
 import { SystemRoutingModule } from './system-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { AddUserMealDialogComponent } from './add-user-meal-dialog/add-user-meal-dialog.component';
+import { ActionsUserMealDialogComponent } from './actions-user-meal-dialog/actions-user-meal-dialog.component';
 import { EditUserMealDialogComponent } from './edit-user-meal-dialog/edit-user-meal-dialog.component';
-import { AddMealDialogComponent } from './add-meal-dialog/add-meal-dialog.component';
+import { ActionsMealDialogComponent } from './actions-meal-dialog/actions-meal-dialog.component';
 
 @NgModule({
   declarations: [
     SystemComponent,
     DbPageComponent,
     MealPageComponent,
-    AddUserMealDialogComponent,
+    ActionsUserMealDialogComponent,
     EditUserMealDialogComponent,
-    AddMealDialogComponent,
+    ActionsMealDialogComponent,
   ],
   imports: [
     CommonModule,

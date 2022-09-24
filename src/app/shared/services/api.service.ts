@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Meal } from '../models/meal.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,5 +21,9 @@ export class ApiService {
 
   post(url: string, data: object): Observable<any> {
     return this.http.post(this.getUrl(url), data);
+  }
+
+  put(url: string, data: Meal): Observable<any> {
+    return this.http.put(`${this.getUrl(url)}/${data.id}`, data);
   }
 }

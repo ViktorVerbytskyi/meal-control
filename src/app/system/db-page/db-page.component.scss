@@ -6,22 +6,30 @@
 .db-page-table {
   width: 100%;
 
+  &_row {
+    width: 100%;
+  }
+
   &_name {
-    width: 300px;
+    min-width: 300px;
   }
 
   &_calories {
     width: 100px;
+    text-align: center;
   }
 
+  &_actions,
   &_proteins,
   &_fats,
   &_carbohydrates {
     width: 60px;
+    text-align: center;
   }
 
   &_expand {
     text-align: right;
+    width: 60px;
   }
 }
 

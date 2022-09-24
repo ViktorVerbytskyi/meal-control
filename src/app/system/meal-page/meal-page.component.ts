@@ -10,7 +10,7 @@ import {
 } from '../../shared/models/userMeal.model';
 import { MealsService } from '../../shared/services/meals.service';
 import { Meal } from '../../shared/models/meal.model';
-import { AddUserMealDialogComponent } from '../add-user-meal-dialog/add-user-meal-dialog.component';
+import { ActionsUserMealDialogComponent } from '../actions-user-meal-dialog/actions-user-meal-dialog.component';
 import { AppState, MealsState } from '../../@ngrx';
 
 @Component({
@@ -103,6 +103,6 @@ export class MealPageComponent implements OnInit {
   }
 
   showAddUserMealDialog(): void {
-    this.dialog.open(AddUserMealDialogComponent, { width: '400px' });
+    this.dialog.open(ActionsUserMealDialogComponent, { width: '400px' });
   }
 }

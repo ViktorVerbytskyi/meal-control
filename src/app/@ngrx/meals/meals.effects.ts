@@ -44,4 +44,20 @@ export class MealsEffects {
       })
     );
   });
+
+  editMeal$: Observable<Action> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(MealsActions.editMeal),
+      switchMap((action) => {
+        return this.mealsService.editMealFromDB(action.editMeal).pipe(
+          map((editMeal: Meal) => {
+            return MealsActions.editMealSuccess({ editMeal });
+          }),
+          catchError((error) => {
+            return of(MealsActions.editMealError({ error }));
+          })
+        );
+      })
+    );
+  });
 }

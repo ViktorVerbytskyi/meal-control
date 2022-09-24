@@ -1,12 +1,5 @@
 <ng-container *ngIf="mealState$ | async"></ng-container>
 
-<button
-  mat-fab
-  color="warn"
-  (click)="showAddMealDialog()"
->
-  <mat-icon>home</mat-icon>
-</button>
 <mat-form-field class="db-page-filter" appearance="standard">
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Type name of meal">
@@ -17,24 +10,32 @@
          [dataSource]="dataSource" multiTemplateDataRows
          class="mat-elevation-z8 db-page-table">
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef><b>Name:</b></th>
+      <th mat-header-cell *matHeaderCellDef class="db-page-table_name"><b>Name:</b></th>
       <td mat-cell *matCellDef="let element" class="db-page-table_name"><b> {{element['name']}} </b></td>
     </ng-container>
     <ng-container matColumnDef="calories">
-      <th mat-header-cell *matHeaderCellDef><b>Calories:</b></th>
+      <th mat-header-cell *matHeaderCellDef class="db-page-table_calories"><b>Calories:</b></th>
       <td mat-cell *matCellDef="let element" class="db-page-table_calories"><b> {{element['calories']}} </b></td>
     </ng-container>
     <ng-container matColumnDef="proteins">
-      <th mat-header-cell *matHeaderCellDef>Proteins:</th>
+      <th mat-header-cell *matHeaderCellDef class="db-page-table_proteins">Proteins:</th>
       <td mat-cell *matCellDef="let element" class="db-page-table_proteins"> {{element['proteins']}} </td>
     </ng-container>
     <ng-container matColumnDef="fats">
-      <th mat-header-cell *matHeaderCellDef>Fats:</th>
+      <th mat-header-cell *matHeaderCellDef class="db-page-table_fats">Fats:</th>
       <td mat-cell *matCellDef="let element" class="db-page-table_fats"> {{element['fats']}} </td>
     </ng-container>
     <ng-container matColumnDef="carbohydrates">
-      <th mat-header-cell *matHeaderCellDef>Carbohydrates:</th>
+      <th mat-header-cell *matHeaderCellDef class="db-page-table_carbohydrates">Carbohydrates:</th>
       <td mat-cell *matCellDef="let element" class="db-page-table_carbohydrates"> {{element['carbohydrates']}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef class="db-page-table_actions" aria-label="row actions">&nbsp;</th>
+      <td mat-cell *matCellDef="let element" class="db-page-table_actions">
+        <button mat-icon-button color="primary" (click)="$event.stopPropagation()">
+          <mat-icon (click)="showEditMealDialog(element)">edit</mat-icon>
+        </button>
+      </td>
     </ng-container>
     <ng-container matColumnDef="expand">
       <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
@@ -57,9 +58,9 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+    <tr mat-header-row class="db-page-table-row" *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
     <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
-        class="element-row"
+        class="db-page-table-row"
         [class.example-expanded-row]="expandedElement === element"
         (click)="expandedElement = expandedElement === element ? null : element">
     </tr>
@@ -73,3 +74,11 @@
 <ng-template #loading>
   <mat-spinner class="spinner"></mat-spinner>
 </ng-template>
+
+<button
+  mat-fab
+  color="warn"
+  (click)="showAddMealDialog()"
+>
+  <mat-icon>add</mat-icon>
+</button>
