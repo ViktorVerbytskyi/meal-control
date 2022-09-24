@@ -28,3 +28,18 @@ export const addMealError = createAction(
   '[Add Meal Effect] ADD_MEAL_ERROR',
   props<{ error: Error | null }>()
 );
+
+export const editMeal = createAction(
+  '[db-page (user)] EDIT_MEAL',
+  props<{ editMeal: Meal }>()
+);
+
+export const editMealSuccess = createAction(
+  '[Edit Meal Effect] EDIT_MEAL_SUCCESS',
+  props<{ editMeal: Meal }>()
+);
+
+export const editMealError = createAction(
+  '[Edit Meal Effect] EDIT_MEAL_ERROR',
+  props<{ error: Error | null }>()
+);
