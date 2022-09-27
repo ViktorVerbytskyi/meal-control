@@ -17,7 +17,7 @@ export class MealsEffects {
     return this.actions$.pipe(
       ofType(MealsActions.getMeals),
       switchMap(() => {
-        return this.mealsService.getAllMeals().pipe(
+        return this.mealsService.getMeals().pipe(
           map((meals: Meal[]) => {
             return MealsActions.getMealsSuccess({ meals });
           }),

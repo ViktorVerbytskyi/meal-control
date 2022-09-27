@@ -65,7 +65,7 @@ export class ActionsUserMealDialogComponent implements OnInit {
   }
 
   private getAllMeals(): void {
-    this.allMeals$ = this.mealsService.getAllMeals().pipe(
+    this.allMeals$ = this.mealsService.getMeals().pipe(
       tap((meals: Meal[]) => {
         this.allMeals = meals;
       })
