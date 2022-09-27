@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { combineLatest, map, Observable, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import {
@@ -8,10 +8,10 @@ import {
   UserMeal,
   UserMealSetting,
 } from '../../shared/models/userMeal.model';
-import { MealsService } from '../../shared/services/meals.service';
-import { Meal } from '../../shared/models/meal.model';
 import { ActionsUserMealDialogComponent } from '../actions-user-meal-dialog/actions-user-meal-dialog.component';
-import { AppState, MealsState } from '../../@ngrx';
+import { AppState } from '../../@ngrx';
+import { UserMealsState } from '../../@ngrx/userMeals';
+import * as UserMealsActions from '../../@ngrx/userMeals';
 
 @Component({
   selector: 'app-meal-page',
@@ -24,81 +24,49 @@ export class MealPageComponent implements OnInit {
   dinnerSetting!: UserMealSetting;
   snackingSetting!: UserMealSetting;
 
-  userMeals!: UserMeal[];
-  userMealSettings$!: Observable<UserMealSetting[]>;
-  mealsState$!: Observable<MealsState>;
+  userMealsState$!: Observable<UserMealsState>;
+  userMealsState!: UserMealsState;
 
-  constructor(
-    private mealsService: MealsService,
-    public dialog: MatDialog,
-    private store: Store<AppState>
-  ) {}
+  constructor(public dialog: MatDialog, private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.mealsState$ = this.store.select('meals');
-    this.userMealSettings$ = combineLatest<[UserMeal[], Meal[]]>(
-      this.mealsService.getAllUserMeals(),
-      this.mealsService.getAllMeals()
-    ).pipe(
-      map(([allUserMeals, allMeals]) => {
-        return allUserMeals.map((userMeal: UserMeal) => {
-          const meal = allMeals.find(
-            (meal: Meal) => meal.id === userMeal.mealId
-          );
-          return { ...userMeal, meal };
-        });
-      }),
-      tap((userMeals: UserMeal[]) => {
-        this.userMeals = userMeals;
-      }),
-      map((userMeals: UserMeal[]) => {
-        const breakfastType: UserMealSetting = {
+    this.store.dispatch(UserMealsActions.getUserMeals());
+    this.userMealsState$ = this.store.select('userMeals').pipe(
+      tap((userMealsState: UserMealsState) => {
+        this.userMealsState = userMealsState;
+        this.breakfastSetting = {
           type: PeriodOfDayType.Breakfast,
           userMeals: [
-            ...userMeals.filter(
+            ...userMealsState.data.filter(
               (meal: UserMeal) => meal.periodOfDay === PeriodOfDayType.Breakfast
             ),
           ],
         };
-        const launchType: UserMealSetting = {
+        this.launchSetting = {
           type: PeriodOfDayType.Launch,
           userMeals: [
-            ...userMeals.filter(
+            ...userMealsState.data.filter(
               (meal: UserMeal) => meal.periodOfDay === PeriodOfDayType.Launch
             ),
           ],
         };
-        const dinnerType: UserMealSetting = {
+        this.dinnerSetting = {
           type: PeriodOfDayType.Dinner,
           userMeals: [
-            ...userMeals.filter(
+            ...userMealsState.data.filter(
               (meal: UserMeal) => meal.periodOfDay === PeriodOfDayType.Dinner
             ),
           ],
         };
-        const snackingType: UserMealSetting = {
+        this.snackingSetting = {
           type: PeriodOfDayType.Snacking,
           userMeals: [
-            ...userMeals.filter(
+            ...userMealsState.data.filter(
               (meal: UserMeal) => meal.periodOfDay === PeriodOfDayType.Snacking
             ),
           ],
         };
-        return [breakfastType, launchType, dinnerType, snackingType];
-      }),
-      tap(
-        ([
-          breakfastType,
-          launchType,
-          dinnerType,
-          snackingType,
-        ]: UserMealSetting[]) => {
-          this.breakfastSetting = breakfastType;
-          this.launchSetting = launchType;
-          this.dinnerSetting = dinnerType;
-          this.snackingSetting = snackingType;
-        }
-      )
+      })
     );
   }
 
