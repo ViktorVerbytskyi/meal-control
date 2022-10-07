@@ -1,10 +1,3 @@
-export enum PeriodOfDay {
-  Breakfast = 'Breakfast',
-  Launch = 'Launch',
-  Dinner = 'Dinner',
-  Snacking = 'Snacking',
-}
-
 export const emptyMeal: Meal = {
   id: 0,
   name: '',
