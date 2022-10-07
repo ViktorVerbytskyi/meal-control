@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable, tap } from 'rxjs';
+import { combineLatest, map, Observable, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import {
-  PeriodOfDayType,
+  PeriodOfDay,
   UserMeal,
   UserMealSetting,
 } from '../../shared/models/userMeal.model';
 import { ActionsUserMealDialogComponent } from '../actions-user-meal-dialog/actions-user-meal-dialog.component';
-import { AppState } from '../../@ngrx';
+import { AppState, MealsState } from '../../@ngrx';
 import { UserMealsState } from '../../@ngrx/userMeals';
 import * as UserMealsActions from '../../@ngrx/userMeals';
+import * as MealsActions from '../../@ngrx/meals';
+import { Meal } from '../../shared/models/meal.model';
 
 @Component({
   selector: 'app-meal-page',
@@ -24,45 +26,57 @@ export class MealPageComponent implements OnInit {
   dinnerSetting!: UserMealSetting;
   snackingSetting!: UserMealSetting;
 
-  userMealsState$!: Observable<UserMealsState>;
+  userMeals$!: Observable<UserMeal[]>;
   userMealsState!: UserMealsState;
 
   constructor(public dialog: MatDialog, private store: Store<AppState>) {}
 
   ngOnInit(): void {
+    this.store.dispatch(MealsActions.getMeals());
     this.store.dispatch(UserMealsActions.getUserMeals());
-    this.userMealsState$ = this.store.select('userMeals').pipe(
-      tap((userMealsState: UserMealsState) => {
+    this.userMeals$ = combineLatest<[UserMealsState, MealsState]>([
+      this.store.select('userMeals'),
+      this.store.select('meals'),
+    ]).pipe(
+      map(([userMealsState, mealsState]: [UserMealsState, MealsState]) => {
         this.userMealsState = userMealsState;
+        return userMealsState.data.map((userMeal: UserMeal) => {
+          const receivedMeal = mealsState.data.find(
+            (meal: Meal) => meal.id === userMeal.mealId
+          );
+          return { ...userMeal, meal: receivedMeal };
+        });
+      }),
+      tap((userMeals: UserMeal[]) => {
         this.breakfastSetting = {
-          type: PeriodOfDayType.Breakfast,
+          type: PeriodOfDay.Breakfast,
           userMeals: [
-            ...userMealsState.data.filter(
-              (meal: UserMeal) => meal.periodOfDay === PeriodOfDayType.Breakfast
+            ...userMeals.filter(
+              (meal: UserMeal) => meal.periodOfDay === PeriodOfDay.Breakfast
             ),
           ],
         };
         this.launchSetting = {
-          type: PeriodOfDayType.Launch,
+          type: PeriodOfDay.Launch,
           userMeals: [
-            ...userMealsState.data.filter(
-              (meal: UserMeal) => meal.periodOfDay === PeriodOfDayType.Launch
+            ...userMeals.filter(
+              (meal: UserMeal) => meal.periodOfDay === PeriodOfDay.Launch
             ),
           ],
         };
         this.dinnerSetting = {
-          type: PeriodOfDayType.Dinner,
+          type: PeriodOfDay.Dinner,
           userMeals: [
-            ...userMealsState.data.filter(
-              (meal: UserMeal) => meal.periodOfDay === PeriodOfDayType.Dinner
+            ...userMeals.filter(
+              (meal: UserMeal) => meal.periodOfDay === PeriodOfDay.Dinner
             ),
           ],
         };
         this.snackingSetting = {
-          type: PeriodOfDayType.Snacking,
+          type: PeriodOfDay.Snacking,
           userMeals: [
-            ...userMealsState.data.filter(
-              (meal: UserMeal) => meal.periodOfDay === PeriodOfDayType.Snacking
+            ...userMeals.filter(
+              (meal: UserMeal) => meal.periodOfDay === PeriodOfDay.Snacking
             ),
           ],
         };

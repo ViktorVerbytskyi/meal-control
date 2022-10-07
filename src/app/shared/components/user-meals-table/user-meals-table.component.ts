@@ -1,9 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {
-  PeriodOfDayType,
-  UserMeal,
-  UserMealSetting,
-} from '../../models/userMeal.model';
+import { UserMealSetting } from '../../models/userMeal.model';
 
 @Component({
   selector: 'app-user-meals-table',

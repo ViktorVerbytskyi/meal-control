@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { map, Observable, tap } from 'rxjs';
+import { Store } from '@ngrx/store';
+
 import { MealsService } from '../../shared/services/meals.service';
-import { emptyMeal, Meal, PeriodOfDay } from '../../shared/models/meal.model';
-import { Event } from '@angular/router';
+import { emptyMeal, Meal } from '../../shared/models/meal.model';
+import { UserMeal, PeriodOfDay } from '../../shared/models/userMeal.model';
+import * as UserMealsActions from '../../@ngrx/userMeals/user-meals.actions';
+import { AppState, MealsState } from '../../@ngrx';
 
 @Component({
   selector: 'app-actions-user-meal-dialog',
@@ -16,14 +20,18 @@ export class ActionsUserMealDialogComponent implements OnInit {
     periodOfDay: ['', [Validators.required]],
     mealWeight: ['', [Validators.required]],
   });
-  allMeals$!: Observable<Meal[]>;
+  mealsState$!: Observable<MealsState>;
   allMeals!: Meal[];
   filteredMeals!: Observable<Meal[]>;
   chosenMeal!: Meal;
   periodsOfDay!: string[];
   mealInfo!: Meal;
 
-  constructor(private fb: FormBuilder, private mealsService: MealsService) {}
+  constructor(
+    private fb: FormBuilder,
+    private mealsService: MealsService,
+    private appStore: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
     this.mealInfo = { ...emptyMeal };
@@ -33,7 +41,19 @@ export class ActionsUserMealDialogComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.form);
+    const userId = this.getCurrentUserId();
+    //TODO: need to rewrite code of Date
+    const userMeal: UserMeal = {
+      userId: userId,
+      mealId: this.chosenMeal.id ? +this.chosenMeal.id : 0,
+      mealWeight: this.mealWeight.value ? +this.mealWeight.value : 0,
+      periodOfDay: this.periodOfDay.value
+        ? this.periodOfDay.value
+        : PeriodOfDay.Breakfast,
+      date: new Date().toString(),
+      portionType: 'gram',
+    };
+    this.appStore.dispatch(UserMealsActions.addUserMeal({ userMeal }));
   }
 
   onClickMealOption(meal: Meal): void {
@@ -61,13 +81,13 @@ export class ActionsUserMealDialogComponent implements OnInit {
   }
 
   get mealWeight() {
-    return this.form.controls.periodOfDay;
+    return this.form.controls.mealWeight;
   }
 
   private getAllMeals(): void {
-    this.allMeals$ = this.mealsService.getMeals().pipe(
-      tap((meals: Meal[]) => {
-        this.allMeals = meals;
+    this.mealsState$ = this.appStore.select('meals').pipe(
+      tap((mealsState: MealsState) => {
+        this.allMeals = [...mealsState.data];
       })
     );
   }
@@ -90,5 +110,10 @@ export class ActionsUserMealDialogComponent implements OnInit {
         );
       })
     );
+  }
+
+  private getCurrentUserId(): number {
+    const currentUser = localStorage.getItem('user');
+    return currentUser ? JSON.parse(currentUser).id : null;
   }
 }

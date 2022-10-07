@@ -1,6 +1,6 @@
 import { Meal } from './meal.model';
 
-export enum PeriodOfDayType {
+export enum PeriodOfDay {
   Breakfast = 'Breakfast',
   Launch = 'Launch',
   Dinner = 'Dinner',
@@ -8,16 +8,17 @@ export enum PeriodOfDayType {
 }
 
 export interface UserMealSetting {
-  type: PeriodOfDayType;
+  type: PeriodOfDay;
   userMeals: UserMeal[];
 }
 
 export interface UserMeal {
+  id?: number;
   userId: number;
   mealId: number;
   mealWeight: number;
   portionType: string;
   date: string;
-  periodOfDay: PeriodOfDayType;
+  periodOfDay: string;
   meal?: Meal;
 }
