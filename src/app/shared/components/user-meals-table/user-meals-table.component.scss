@@ -16,11 +16,11 @@
       width: 100%;
     }
 
+    &_calories,
     &_proteins,
     &_fats,
-    &_carbohydrates,
-    &_mealWeight{
-      width: 70px;
+    &_carbohydrates {
+      width: 100px;
     }
 
     &_expand {

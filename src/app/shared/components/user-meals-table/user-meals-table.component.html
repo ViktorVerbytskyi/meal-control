@@ -8,27 +8,32 @@
     *ngIf="setting.userMeals.length; else tableMessage"
   >
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name:</th>
-      <td class="user-meals_container_table_name" mat-cell *matCellDef="let element"> {{element['meal']['name']}} </td>
+      <th mat-header-cell *matHeaderCellDef><b>Meal name:</b></th>
+      <td class="user-meals_container_table_name" mat-cell *matCellDef="let element"><b> {{element['meal']['name']}} </b></td>
+    </ng-container>
+
+    <ng-container matColumnDef="calories">
+      <th mat-header-cell *matHeaderCellDef><b>Calories, <small>kkal</small>:</b></th>
+      <td class="user-meals_container_table_calories" mat-cell *matCellDef="let element"><b> {{element['meal']['calories']}} </b></td>
     </ng-container>
 
     <ng-container matColumnDef="proteins">
-      <th mat-header-cell *matHeaderCellDef>Proteins:</th>
+      <th mat-header-cell *matHeaderCellDef>Proteins, <small>gram</small>:</th>
       <td class="user-meals_container_table_proteins" mat-cell *matCellDef="let element"> {{element['meal']['proteins']}} </td>
     </ng-container>
 
     <ng-container matColumnDef="fats">
-      <th mat-header-cell *matHeaderCellDef>Fats:</th>
+      <th mat-header-cell *matHeaderCellDef>Fats, <small>gram</small>:</th>
       <td class="user-meals_container_table_fats" mat-cell *matCellDef="let element"> {{element['meal']['fats']}} </td>
     </ng-container>
 
     <ng-container matColumnDef="carbohydrates">
-      <th mat-header-cell *matHeaderCellDef>Carboh.:</th>
+      <th mat-header-cell *matHeaderCellDef>Carboh., <small>gram</small>:</th>
       <td class="user-meals_container_table_carbohydrates" mat-cell *matCellDef="let element"> {{element['meal']['carbohydrates']}} </td>
     </ng-container>
 
     <ng-container matColumnDef="mealWeight">
-      <th mat-header-cell *matHeaderCellDef>Weight:</th>
+      <th mat-header-cell *matHeaderCellDef>Weight, <small>gram</small>:</th>
       <td class="user-meals_container_table_mealWeight" mat-cell *matCellDef="let element"> {{element['mealWeight']}} </td>
     </ng-container>
 

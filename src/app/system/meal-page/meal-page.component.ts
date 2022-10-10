@@ -38,12 +38,24 @@ export class MealPageComponent implements OnInit {
       this.store.select('userMeals'),
       this.store.select('meals'),
     ]).pipe(
-      map(([userMealsState, mealsState]: [UserMealsState, MealsState]) => {
+      tap(([userMealsState]: [UserMealsState, MealsState]) => {
         this.userMealsState = userMealsState;
+      }),
+      map(([userMealsState, mealsState]: [UserMealsState, MealsState]) => {
         return userMealsState.data.map((userMeal: UserMeal) => {
-          const receivedMeal = mealsState.data.find(
+          let receivedMeal = mealsState.data.find(
             (meal: Meal) => meal.id === userMeal.mealId
           );
+          if (receivedMeal) {
+            receivedMeal = {
+              ...receivedMeal,
+              calories: (receivedMeal.calories * userMeal.mealWeight) / 100,
+              proteins: (receivedMeal.proteins * userMeal.mealWeight) / 100,
+              fats: (receivedMeal.fats * userMeal.mealWeight) / 100,
+              carbohydrates:
+                (receivedMeal.carbohydrates * userMeal.mealWeight) / 100,
+            };
+          }
           return { ...userMeal, meal: receivedMeal };
         });
       }),

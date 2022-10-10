@@ -10,57 +10,39 @@
   "meals": [
     {
       "id": 1,
-      "name": "Meat",
-      "calories": 100,
-      "proteins": 100,
-      "fats": 200,
-      "carbohydrates": 300,
-      "description": "Meat is so good!"
+      "name": "Куриная грудка (вареная)",
+      "calories": 134.12,
+      "proteins": 27.22,
+      "fats": 2.66,
+      "carbohydrates": 0.6,
+      "description": "Отличный диетический продукт!"
     },
     {
       "id": 2,
-      "name": "Beer",
-      "calories": 100,
-      "proteins": 500,
-      "fats": 400,
-      "carbohydrates": 600,
-      "description": "Bear is so great!"
+      "name": "Сырок глазированный \"Злагода\" 36гр",
+      "calories": 329,
+      "proteins": 3,
+      "fats": 24.2,
+      "carbohydrates": 24.8,
+      "description": "Отличный перекус на завтрак!"
     },
     {
-      "name": "Bread",
-      "calories": 500,
-      "proteins": 100,
-      "fats": 200,
-      "carbohydrates": 300,
-      "description": "some description",
+      "name": "Кофе Якобс (1л. кофе + 2л. сахара) (~300грамм)",
+      "calories": 14,
+      "proteins": 0,
+      "fats": 0,
+      "carbohydrates": 0,
+      "description": "Неотьемлемая часть завтрака!",
       "id": 3
     },
     {
-      "name": "Tea",
+      "name": "Чай (~300грамм)",
       "calories": 2,
       "proteins": 0,
       "fats": 0,
       "carbohydrates": 0,
       "description": "Just tea!",
       "id": 4
-    },
-    {
-      "name": "test",
-      "calories": 1,
-      "proteins": 1,
-      "fats": 1,
-      "carbohydrates": 1,
-      "description": "",
-      "id": 5
-    },
-    {
-      "id": 6,
-      "name": "test2",
-      "calories": 4,
-      "proteins": 1,
-      "fats": 1,
-      "carbohydrates": 1,
-      "description": "1"
     }
   ],
   "userMeals": [
@@ -135,6 +117,33 @@
       "portionType": "gram",
       "date": "30/08/2022",
       "periodOfDay": "Snacking"
+    },
+    {
+      "userId": 1,
+      "mealId": 4,
+      "mealWeight": 500,
+      "periodOfDay": "Breakfast",
+      "date": "Mon Oct 10 2022 13:53:06 GMT+0300 (Eastern European Summer Time)",
+      "portionType": "gram",
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "mealId": 1,
+      "mealWeight": 500,
+      "periodOfDay": "Breakfast",
+      "date": "Mon Oct 10 2022 13:53:51 GMT+0300 (Eastern European Summer Time)",
+      "portionType": "gram",
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "mealId": 3,
+      "mealWeight": 300,
+      "periodOfDay": "Breakfast",
+      "date": "Mon Oct 10 2022 15:48:58 GMT+0300 (Eastern European Summer Time)",
+      "portionType": "gram",
+      "id": 11
     }
   ]
 }
