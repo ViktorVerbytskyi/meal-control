@@ -11,10 +11,11 @@ export class UserMealsTableComponent implements OnInit {
 
   displayedColumns: string[] = [
     'name',
+    'mealWeight',
+    'calories',
     'proteins',
     'fats',
     'carbohydrates',
-    'mealWeight',
   ];
   constructor() {}
 
