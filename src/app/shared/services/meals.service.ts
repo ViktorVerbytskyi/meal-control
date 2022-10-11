@@ -27,6 +27,10 @@ export class MealsService {
     return this.apiService.post('userMeals', userMeal).pipe(delay(500));
   }
 
+  editUserMeal(userMeal: UserMeal): Observable<UserMeal> {
+    return this.apiService.put('userMeals', userMeal).pipe(delay(500));
+  }
+
   addMealToDB(meal: Meal): Observable<Meal> {
     return this.apiService.post('meals', meal).pipe(delay(500));
   }

@@ -23,7 +23,7 @@ export class ApiService {
     return this.http.post(this.getUrl(url), data);
   }
 
-  put(url: string, data: Meal): Observable<any> {
+  put(url: string, data: any): Observable<any> {
     return this.http.put(`${this.getUrl(url)}/${data.id}`, data);
   }
 }

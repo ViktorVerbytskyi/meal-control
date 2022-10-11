@@ -1,7 +1,7 @@
 <ng-template [ngIf]="mealsState$ | async"></ng-template>
 
 <app-common-user-meal-dialog>
-  <div common-user-meal-dialog-title>Add meal to diary</div>
+  <div common-user-meal-dialog-title>{{ data ? actionUserMealDialogTitles.EditMealFromDiary : actionUserMealDialogTitles.AddMealToDataDiary }}</div>
   <div common-user-meal-dialog-content>
     <form class="actions-user-meal-dialog-form" [formGroup]="form">
       <mat-form-field class="actions-user-meal-dialog-form_meal-name" appearance="outline">
@@ -34,8 +34,7 @@
           type="number"
           name="mealWeight"
           formControlName="mealWeight"
-          #mealWeightEl
-          (input)="onChangeMealWeight(mealWeightEl.value)"
+          (input)="onChangeMealWeight()"
         >
         <mat-error *ngIf="mealWeight.hasError('required')">
           Weight of meal is <strong>required</strong>
@@ -74,6 +73,6 @@
       [mat-dialog-close]="true"
       [disabled]="!form.valid"
       (click)="onSubmit()"
-    >Add</button>
+    >{{ data ? actionUserMealDialogBtn.Edit : actionUserMealDialogBtn.Add }}</button>
   </div>
 </app-common-user-meal-dialog>

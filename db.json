@@ -59,7 +59,7 @@
       "id": 2,
       "userId": 1,
       "mealId": 2,
-      "mealWeight": 500,
+      "mealWeight": 36,
       "portionType": "gram",
       "date": "30/08/2022",
       "periodOfDay": "Dinner"
@@ -69,15 +69,15 @@
       "userId": 1,
       "mealId": 1,
       "mealWeight": 500,
-      "portionType": "gram",
+      "periodOfDay": "Breakfast",
       "date": "30/08/2022",
-      "periodOfDay": "Breakfast"
+      "portionType": "gram"
     },
     {
       "id": 4,
       "userId": 1,
       "mealId": 2,
-      "mealWeight": 500,
+      "mealWeight": 36,
       "portionType": "gram",
       "date": "30/08/2022",
       "periodOfDay": "Breakfast"
@@ -95,7 +95,7 @@
       "id": 6,
       "userId": 1,
       "mealId": 2,
-      "mealWeight": 500,
+      "mealWeight": 36,
       "portionType": "gram",
       "date": "30/08/2022",
       "periodOfDay": "Launch"
@@ -113,7 +113,7 @@
       "id": 8,
       "userId": 1,
       "mealId": 2,
-      "mealWeight": 500,
+      "mealWeight": 36,
       "portionType": "gram",
       "date": "30/08/2022",
       "periodOfDay": "Snacking"
