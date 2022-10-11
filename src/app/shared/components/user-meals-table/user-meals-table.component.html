@@ -8,33 +8,42 @@
     *ngIf="setting.userMeals.length; else tableMessage"
   >
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef><b>Meal name:</b></th>
+      <th class="user-meals_container_table_name" mat-header-cell *matHeaderCellDef><b>Meal name:</b></th>
       <td class="user-meals_container_table_name" mat-cell *matCellDef="let element"><b> {{element['meal']['name']}} </b></td>
     </ng-container>
 
     <ng-container matColumnDef="calories">
-      <th mat-header-cell *matHeaderCellDef><b>Calories, <small>kkal</small>:</b></th>
+      <th class="user-meals_container_table_calories" mat-header-cell *matHeaderCellDef><b>Calories, <small>kkal</small>:</b></th>
       <td class="user-meals_container_table_calories" mat-cell *matCellDef="let element"><b> {{element['meal']['calories']}} </b></td>
     </ng-container>
 
     <ng-container matColumnDef="proteins">
-      <th mat-header-cell *matHeaderCellDef>Proteins, <small>gram</small>:</th>
+      <th class="user-meals_container_table_proteins" mat-header-cell *matHeaderCellDef>Proteins, <small>gram</small>:</th>
       <td class="user-meals_container_table_proteins" mat-cell *matCellDef="let element"> {{element['meal']['proteins']}} </td>
     </ng-container>
 
     <ng-container matColumnDef="fats">
-      <th mat-header-cell *matHeaderCellDef>Fats, <small>gram</small>:</th>
+      <th class="user-meals_container_table_fats" mat-header-cell *matHeaderCellDef>Fats, <small>gram</small>:</th>
       <td class="user-meals_container_table_fats" mat-cell *matCellDef="let element"> {{element['meal']['fats']}} </td>
     </ng-container>
 
     <ng-container matColumnDef="carbohydrates">
-      <th mat-header-cell *matHeaderCellDef>Carboh., <small>gram</small>:</th>
+      <th class="user-meals_container_table_carbohydrates" mat-header-cell *matHeaderCellDef>Carboh., <small>gram</small>:</th>
       <td class="user-meals_container_table_carbohydrates" mat-cell *matCellDef="let element"> {{element['meal']['carbohydrates']}} </td>
     </ng-container>
 
     <ng-container matColumnDef="mealWeight">
-      <th mat-header-cell *matHeaderCellDef>Weight, <small>gram</small>:</th>
+      <th class="user-meals_container_table_mealWeight" mat-header-cell *matHeaderCellDef>Weight, <small>gram</small>:</th>
       <td class="user-meals_container_table_mealWeight" mat-cell *matCellDef="let element"> {{element['mealWeight']}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef class="user-meals_container_table_actions" aria-label="row actions">&nbsp;</th>
+      <td mat-cell *matCellDef="let element" class="user-meals_container_table_actions">
+        <button mat-icon-button color="primary" (click)="$event.stopPropagation()">
+          <mat-icon (click)="showEditUserMealDialog(element)">edit</mat-icon>
+        </button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

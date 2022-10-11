@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserMealSetting } from '../../models/userMeal.model';
+import { MatDialog } from '@angular/material/dialog';
+
+import { UserMeal, UserMealSetting } from '../../models/userMeal.model';
+import { ActionsUserMealDialogComponent } from '../../../system/actions-user-meal-dialog/actions-user-meal-dialog.component';
 
 @Component({
   selector: 'app-user-meals-table',
@@ -16,8 +19,16 @@ export class UserMealsTableComponent implements OnInit {
     'proteins',
     'fats',
     'carbohydrates',
+    'actions',
   ];
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
+  showEditUserMealDialog(userMeal: UserMeal) {
+    this.dialog.open(ActionsUserMealDialogComponent, {
+      data: { ...userMeal },
+      width: '400px',
+    });
+  }
 }

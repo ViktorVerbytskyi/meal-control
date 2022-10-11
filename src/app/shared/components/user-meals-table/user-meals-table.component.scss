@@ -16,11 +16,17 @@
       width: 100%;
     }
 
+    &_mealWeight {
+      text-align: center;
+    }
+
     &_calories,
     &_proteins,
     &_fats,
-    &_carbohydrates {
+    &_carbohydrates,
+    &_actions {
       width: 100px;
+      text-align: center;
     }
 
     &_expand {

@@ -49,11 +49,21 @@ export class MealPageComponent implements OnInit {
           if (receivedMeal) {
             receivedMeal = {
               ...receivedMeal,
-              calories: (receivedMeal.calories * userMeal.mealWeight) / 100,
-              proteins: (receivedMeal.proteins * userMeal.mealWeight) / 100,
-              fats: (receivedMeal.fats * userMeal.mealWeight) / 100,
-              carbohydrates:
-                (receivedMeal.carbohydrates * userMeal.mealWeight) / 100,
+              calories: +(
+                (receivedMeal.calories * userMeal.mealWeight) /
+                100
+              ).toFixed(2),
+              proteins: +(
+                (receivedMeal.proteins * userMeal.mealWeight) /
+                100
+              ).toFixed(2),
+              fats: +((receivedMeal.fats * userMeal.mealWeight) / 100).toFixed(
+                2
+              ),
+              carbohydrates: +(
+                (receivedMeal.carbohydrates * userMeal.mealWeight) /
+                100
+              ).toFixed(2),
             };
           }
           return { ...userMeal, meal: receivedMeal };
